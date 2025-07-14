@@ -1,0 +1,54 @@
+# Java build files
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven target directory
+target/
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# VS Code workspace files (optional)
+.vscode/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Local build scripts or temp files
+*.bat
+*.sh
+*.tmp
+
+# Backup files
+*.bak
+*~
+
+# Test report folders
+test-output/
+surefire-reports/
+allure-results/
+
+# Mac Finder files
+._*
+
+# Windows Thumbs.db files
+Thumbs.db
+
+# Node modules (if frontend present)
+node_modules/
