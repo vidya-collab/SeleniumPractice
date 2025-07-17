@@ -1,23 +1,23 @@
 package pagefactory;
 
 
+import java.io.File;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import io.netty.handler.timeout.TimeoutException;
+
 import utils.ExcelReader;
 import utils.ConfigReader;
 import utils.DriverManager;
@@ -34,16 +34,35 @@ public class Checkboxpage {
 	
 
 
-	//-----------------@FIndBy method for locartors(xpath)-------------------------
+	//----------------below @FindBy method for locators(xpath)------------------------
 	
 
-	@FindBy(xpath ="//div[@class='section-title']//h1[text()='DROPDOWN, CHECKBOXE(S) & RADIO BUTTON(S)']")WebElement Link1;
+	@FindBy(xpath ="//div[@class='section-title']//h1[text()='DROPDOWN, CHECKBOXE(S) & RADIO BUTTON(S)']")WebElement Link1;// link for chkbox.radiobutton,dropdown
   
-   //@FindBy(xpath ="//div[@id='main-header']//h1']")WebElement page1;
+    //@FindBy(xpath ="//div[@id='main-header']//h1']")WebElement page1;
+	
+	@FindBy(xpath ="//div[@class='section-title']//h1[text()='FILE UPLOAD']")WebElement Link2; //link for pdf upload
+	
+	
+	//-------------------below by locator methods--------------------------------------
+	
+	private By javaDropdown = By.id("dropdowm-menu-1");// Locator for first dropdown
+    
+   
+   //private By iframe = By.cssSelector("iframe");  //Locators for frame and file upload
+   //private By iframe = By.cssSelector("iframe[src='file-upload/index.html']");  //Locators for frame and file upload
+   //private By fileInput = By.xpath("//input[@id='myFile']");
+   
+   By fileInput = By.id("myFile"); // locator for file uplaod 
+    
+   //private By fileInput = By.xpath("//input[@type='file']"); // locator for file uplaod 
+    
+    private By submitBtn = By.xpath("//input[@id='submit-button']");
 	
 	
 	
-	//-------------------------------------constructor for initializing driver---------
+    
+    //-------------------------------------below code for constructor for initializing driver------------
 	
 	public Checkboxpage ()   {  
 		
@@ -52,23 +71,26 @@ public class Checkboxpage {
 	}
 	
 	
-	//----------------------------------all methods------------------------------
+	//----------------------------------below all methods code start here--------------------------------------------------------
 	
 	
 	public void islink1clicked()
 	{
-		Link1.click();
+		Link1.click(); // going for checkbox,dropdown,radio button page
 		
 		
-	//--------------- code for switching to new window.----------------------------
+		//-----below code for switching to new window
 		
 		//String parentWindow = driver.getWindowHandle();     // storing id of parent window in case you want to come back.
+		
 		for (String winHandle : driver.getWindowHandles()) {   // loop for handling all child windows handle.
-		    driver.switchTo().window(winHandle);               //  switch to child window.
+		    
+			driver.switchTo().window(winHandle);               // switch to child window.
 		    
 		    //driver.switchTo().window(parentWindow); // code for coming back to parent window.
-		}
+															}
 
+		
 	}
 	
 	
@@ -76,12 +98,12 @@ public class Checkboxpage {
 		
 		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		    WebElement heading = wait.until(ExpectedConditions.visibilityOfElementLocated(
-		        By.xpath("//h1[contains(text(), 'Dropdown')]")));
+		    By.xpath("//h1[contains(text(), 'Dropdown')]")));
 		    return heading.isDisplayed();
 		}
 	
 	
-	// -------code from cherckbox selection-----have dynamic xpath----------------------------------------------------------------
+	// -------below code from checkbox selection-----have dynamic xpath----------------------------------------------------------------
 	
 	public void selectCheckbox(String optionLabel) {
         WebElement checkbox = driver.findElement(By.xpath("//label[contains(.,'" + optionLabel + "')]/input[@type='checkbox']"));
@@ -95,7 +117,7 @@ public class Checkboxpage {
         return checkbox.isSelected();
     }
     
-    //----------------------------------code for radio buttion selection------------------------------------------------------------------
+    //----------------------------------below code for radio button selection------------------------------------------------------------------
    
 
     public void selectRadioButton(String color) {
@@ -118,7 +140,99 @@ public class Checkboxpage {
         return false;
     }
 
+//-----------------------------------below code for dropdown------------------------------------------------
+    
+     
+
+    // Method to select option
+    public void selectLanguage(String language) {
+        Select dropdown = new Select(driver.findElement(javaDropdown));
+        dropdown.selectByVisibleText(language);
+    }
+
+    // Method to get selected option
+    public String getSelectedLanguage() {
+        Select dropdown = new Select(driver.findElement(javaDropdown));
+        return dropdown.getFirstSelectedOption().getText();
+    }
+
+ //-------- below code for file upload---------------------------------------------------------------------------------------
+   
+  
+//    // Upload file method
+//    public void uploadFile(String fileName) {
+//    String filePath = System.getProperty("user.dir") + File.separator + "test-data" + File.separator + fileName;
+//    driver.findElement(fileInput).sendKeys(filePath);
+//    }
+    
+    
+    public void uploadFile(String fileName) {
+    	
+    
+        //String filePath = System.getProperty("user.dir") + File.separator + "test-data" + File.separator + fileName;
+    	//String filepath ="./src/test/resources/test-data/sample.png";
+    	
+    	String relativePath = "./src/test/resources/test-data/sample.png";
+    	String absolutePath = new File(relativePath).getAbsolutePath();
+    	
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebElement uploadElement = wait.until(ExpectedConditions.visibilityOfElementLocated(fileInput));
+
+        uploadElement.sendKeys(absolutePath);
+    }
+    
+    
+
+    public void clickSubmit() {
+        driver.findElement(submitBtn).click();
+    }
+
+
+	public void islink2clicked() {
+		
+		Link2.click();   // for clicking upload file page
+		
+		//-----below code for switching to new window
+		
+		//String parentWindow = driver.getWindowHandle();     // storing id of parent window in case you want to come back.
+		
+    	for (String winHandle : driver.getWindowHandles()) {   // loop for handling all child windows handle.
+    			    
+    		
+    	driver.switchTo().window(winHandle);               //  switch to child window.
+    			    
+    	//driver.switchTo().window(parentWindow); // code for coming back to parent window.
+    
+    	}	
+				
+	}
+	
+	
+	public String Alertforsubmit() {
+        
+        // Switch to alert and capture text
+        Alert alert = driver.switchTo().alert();
+        String alertText = alert.getText();
+        alert.accept(); // Close the alert
+        return alertText;
+	}
+
+	
+	
+	
+	//---------------------------------------------------------------------------------------------
+	
+	/*public void switchToIframe() { // code for switch to frame
+
+		driver.switchTo().frame(driver.findElement(iframe));
+		
+	}*/
+   
+	//-------------------------------------------------------------------------------------------------	
+	
+
 }
+
 		
 
 	

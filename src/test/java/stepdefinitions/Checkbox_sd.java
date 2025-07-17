@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Assert;
 
+import ch.qos.logback.classic.Logger;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -38,7 +39,7 @@ public class Checkbox_sd {
 			Assert.assertTrue(checkboxpage.isdisplayed(), "Testing all item page is showed");
 		}
 		
-		//--------------------------------------------------------------------------------------------------------------------
+		//-----------------------------------checkbox code---------------------------------------------------------------------------------
 		
 		@Given("User navigates to the checkbox page")
 	    public void user_navigates_to_checkbox_page() {
@@ -64,7 +65,7 @@ public class Checkbox_sd {
 	        }
 	    }
 		
-	  // ----------------------------------------------------------------------------------------------------------------- 
+	  // --------------------------------------radio button code --------------------------------------------------------------------------- 
 	    
 	    @Given("The user is on the WebdriverUniversity radio button test page")
 	    public void the_user_is_on_the_webdriver_university_radio_button_test_page() {
@@ -85,6 +86,80 @@ public class Checkbox_sd {
 	    }
 		
 
-	    //----------------------------------------------------------------------------------------
+	    //-------------------------------------dropdown code---------------------------------------------------
+	 
 	    
+	    @Given("User is on the dropdown menu page")
+	    public void user_is_on_the_dropdown_menu_page() {
+	    	checkboxpage.islink1clicked();
+			LoggerLoad.info("The users is on the Webdriver University dropdown Page");
+	    }
+
+	    @When("User selects {string} from the first dropdown")
+	    public void user_selects_from_the_first_dropdown(String language) {
+	    	 checkboxpage.selectLanguage(language);
+	    }
+
+	    @Then("{string} should be selected in the dropdown")
+	    public void should_be_selected_in_the_dropdown(String expected) {
+	    	 String actual = checkboxpage.getSelectedLanguage();
+	         Assert.assertEquals(actual, expected);
+	    }
+	    
+	    //--------------------file upload code  -------------------------------------------------
+	    
+	    
+	    @Given("User is on the file upload page")
+	    public void user_is_on_the_file_upload_page() {
+	    	checkboxpage.islink2clicked();
+			LoggerLoad.info("The users is on the Webdriver University pdf uplaod Page");
+			//checkboxpage.switchToIframe();
+			
+
+	    }
+
+	    @When("User uploads the file {string}")
+	    public void user_uploads_the_file(String string) {
+	    	checkboxpage.uploadFile(string);
+	    }
+
+	    @When("User clicks on the submit button")
+	    public void user_clicks_on_the_submit_button() {
+	    	checkboxpage.clickSubmit();
+	    }
+	        
+	   	
+	    @Then("An alert message {string} should be displayed")
+	    public void alert_message_should_be_displayed (String expectedAlert) {
+	    	
+	    	String Submitalert=checkboxpage.Alertforsubmit();
+	    	Assert.assertEquals(Submitalert, expectedAlert);
+	    	}
+	    	
+	    
+ //---------------------------------------not uplaod file code ---------------------------------
+
+	@When("User clicks the submit button without selecting a file")
+	public void user_clicks_the_submit_button_without_selecting_a_file() {
+		
+		checkboxpage.clickSubmit();
+		
 	}
+	
+	@Then("An non submission alert message {string} should be displayed")
+	public void an_non_submission_alert_message_should_be_displayed(String nonSubmitExpectedAlert) {
+		String nonSubmitalert=checkboxpage.Alertforsubmit();
+    	Assert.assertEquals(nonSubmitalert, nonSubmitExpectedAlert);
+	}
+	    
+	    
+}	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
