@@ -24,7 +24,7 @@ import utils.DriverManager;
 import java.time.Duration;
 
 
-public class Checkboxpage {
+public class WebElements_page {
 	
 	
 	WebDriver driver= DriverManager.getdriver();
@@ -64,7 +64,7 @@ public class Checkboxpage {
     
     //-------------------------------------below code for constructor for initializing driver------------
 	
-	public Checkboxpage ()   {  
+	public WebElements_page ()   {  
 		
 		PageFactory.initElements(driver , this);
 

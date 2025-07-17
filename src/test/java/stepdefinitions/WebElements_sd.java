@@ -13,13 +13,13 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import pagefactory.Checkboxpage;
+import pagefactory.WebElements_page;
 import utils.LoggerLoad;
 
 
-public class Checkbox_sd {
+public class WebElements_sd {
 	
-	Checkboxpage checkboxpage =new  Checkboxpage();
+	WebElements_page checkboxpage =new  WebElements_page();
 	
 	
 		@Given("The Users is on the webdriveruniversity.com in Page")
