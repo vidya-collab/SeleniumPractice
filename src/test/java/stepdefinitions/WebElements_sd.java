@@ -19,7 +19,7 @@ import utils.LoggerLoad;
 
 public class WebElements_sd {
 	
-	WebElements_page checkboxpage =new  WebElements_page();
+	WebElements_page webElements_page =new  WebElements_page();
 	
 	
 		@Given("The Users is on the webdriveruniversity.com in Page")
@@ -30,13 +30,13 @@ public class WebElements_sd {
 
 		@When("User click on link Dropdown,Checkbox,RadioButton testing")
 		public void user_click_on_link_dropdown_checkbox_radio_button_testing() {
-			checkboxpage.islink1clicked();
+			webElements_page.islink1clicked();
 			
 		}
 		
 		@Then("User should see page for testing Dropdown,Checkbox,RadioButton")
 		public void user_should_see_page_for_testing_dropdown_checkbox_radio_button() {
-			Assert.assertTrue(checkboxpage.isdisplayed(), "Testing all item page is showed");
+			Assert.assertTrue(webElements_page.isdisplayed(), "Testing all item page is showed");
 		}
 		
 		//-----------------------------------checkbox code---------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ public class WebElements_sd {
 		@Given("User navigates to the checkbox page")
 	    public void user_navigates_to_checkbox_page() {
 			
-			checkboxpage.islink1clicked();
+			webElements_page.islink1clicked();
 			LoggerLoad.info("The users is on the Webdriver University checkbox Page");
 	        
 	    }
@@ -53,7 +53,7 @@ public class WebElements_sd {
 	    public void user_selects_the_checkboxes(DataTable dataTable) { //The DataTable (like a mini table in the feature file) is converted into a List<String>.
 	        List<String> options = dataTable.asList();
 	        for (String option : options) {
-	            checkboxpage.selectCheckbox(option);
+	            webElements_page.selectCheckbox(option);
 	        }
 	    }
 
@@ -61,7 +61,7 @@ public class WebElements_sd {
 	    public void checkboxes_should_be_selected(DataTable dataTable) {
 	        List<String> options = dataTable.asList();
 	        for (String option : options) {
-	            Assert.assertTrue(checkboxpage.isCheckboxSelected(option), "Checkbox " + option + " is not selected.");
+	            Assert.assertTrue(webElements_page.isCheckboxSelected(option), "Checkbox " + option + " is not selected.");
 	        }
 	    }
 		
@@ -69,20 +69,20 @@ public class WebElements_sd {
 	    
 	    @Given("The user is on the WebdriverUniversity radio button test page")
 	    public void the_user_is_on_the_webdriver_university_radio_button_test_page() {
-	    	checkboxpage.islink1clicked();
+	    	webElements_page.islink1clicked();
 			LoggerLoad.info("The users is on the Webdriver University radio button Page");
 	        
 	    }
 
 	    @When("User selects radio button {string}")
 	    public void user_selects_radio_button(String color) {
-	        checkboxpage.selectRadioButton(color);
+	        webElements_page.selectRadioButton(color);
 	    }
 
 	    @Then("Radio button {string} should be selected")
 	    public void radio_button_should_be_selected(String color) {
 	       
-	       Assert.assertTrue(checkboxpage.isRadioButtonSelected(color), "Radio button '" + color + "' is not selected.");
+	       Assert.assertTrue(webElements_page.isRadioButtonSelected(color), "Radio button '" + color + "' is not selected.");
 	    }
 		
 
@@ -91,18 +91,18 @@ public class WebElements_sd {
 	    
 	    @Given("User is on the dropdown menu page")
 	    public void user_is_on_the_dropdown_menu_page() {
-	    	checkboxpage.islink1clicked();
+	    	webElements_page.islink1clicked();
 			LoggerLoad.info("The users is on the Webdriver University dropdown Page");
 	    }
 
 	    @When("User selects {string} from the first dropdown")
 	    public void user_selects_from_the_first_dropdown(String language) {
-	    	 checkboxpage.selectLanguage(language);
+	    	 webElements_page.selectLanguage(language);
 	    }
 
 	    @Then("{string} should be selected in the dropdown")
 	    public void should_be_selected_in_the_dropdown(String expected) {
-	    	 String actual = checkboxpage.getSelectedLanguage();
+	    	 String actual = webElements_page.getSelectedLanguage();
 	         Assert.assertEquals(actual, expected);
 	    }
 	    
@@ -111,47 +111,74 @@ public class WebElements_sd {
 	    
 	    @Given("User is on the file upload page")
 	    public void user_is_on_the_file_upload_page() {
-	    	checkboxpage.islink2clicked();
+	    	webElements_page.islink2clicked();
 			LoggerLoad.info("The users is on the Webdriver University pdf uplaod Page");
-			//checkboxpage.switchToIframe();
+			//WebElements_page.switchToIframe();
 			
 
 	    }
 
 	    @When("User uploads the file {string}")
 	    public void user_uploads_the_file(String string) {
-	    	checkboxpage.uploadFile(string);
+	    	webElements_page.uploadFile(string);
 	    }
 
 	    @When("User clicks on the submit button")
 	    public void user_clicks_on_the_submit_button() {
-	    	checkboxpage.clickSubmit();
+	    	webElements_page.clickSubmit();
 	    }
 	        
 	   	
 	    @Then("An alert message {string} should be displayed")
 	    public void alert_message_should_be_displayed (String expectedAlert) {
 	    	
-	    	String Submitalert=checkboxpage.Alertforsubmit();
+	    	String Submitalert=webElements_page.Alertforsubmit();
 	    	Assert.assertEquals(Submitalert, expectedAlert);
 	    	}
 	    	
 	    
- //---------------------------------------not uplaod file code ---------------------------------
+ //---------------------------------------file not uplaod file code ---------------------------------
 
 	@When("User clicks the submit button without selecting a file")
 	public void user_clicks_the_submit_button_without_selecting_a_file() {
 		
-		checkboxpage.clickSubmit();
+		webElements_page.clickSubmit();
 		
 	}
 	
 	@Then("An non submission alert message {string} should be displayed")
 	public void an_non_submission_alert_message_should_be_displayed(String nonSubmitExpectedAlert) {
-		String nonSubmitalert=checkboxpage.Alertforsubmit();
+		String nonSubmitalert=webElements_page.Alertforsubmit();
     	Assert.assertEquals(nonSubmitalert, nonSubmitExpectedAlert);
 	}
 	    
+	
+	
+	//-----------------below code for handling frame-----------------------------------------------------
+	
+	@Given("User navigates to the iframe page")
+	public void user_navigates_to_the_iframe_page() {
+		webElements_page.islink3clicked();
+		LoggerLoad.info("The users is on the Webdriver University frame ");
+		
+	}
+
+	@When("User switches to the iframe")
+	public void user_switches_to_the_iframe() {
+		webElements_page.switchToIframe();
+	    
+	}
+
+	@When("User clicks on {string} tab")
+	public void user_clicks_on_tab(String string) {
+		webElements_page.OurProductclick();
+	}
+
+	
+	@Then("{string} section should be displayed")
+    public void section_should_be_displayed(String expectedTab) {
+        Assert.assertTrue(webElements_page.isOurProductGetSelected(expectedTab));
+    }
 	    
 }	    
 	    

@@ -17,8 +17,8 @@ import io.cucumber.testng.CucumberOptions;
 				
 
 				monochrome=false, 
-				tags ="@FilenotUploadAlert", 
-				//features = {"C:\\Users\\Vidya\\eclipse-workspace\\Selenium_Practice\\src\\test\\resources\\features\\Checkbox.feature"}, 
+				//tags ="@framehandling", 
+				
 				features = {"src/test/resources/features/"},
 				glue= {"stepdefinitions","hooks"})
 		

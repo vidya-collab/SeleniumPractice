@@ -45,3 +45,10 @@ Feature: Testing web Elements from above website Checkbox,Dropdown,RadioButton t
     Given User is on the file upload page
     When User clicks the submit button without selecting a file
     Then An non submission alert message "You need to select a file to upload!" should be displayed
+    
+   @framehandling
+    Scenario: Click on 'Our Products' inside iframe
+    Given User navigates to the iframe page
+    When User switches to the iframe
+    And User clicks on "Our Products" tab
+    Then "Our Products" section should be displayed

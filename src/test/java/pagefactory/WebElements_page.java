@@ -43,6 +43,13 @@ public class WebElements_page {
 	
 	@FindBy(xpath ="//div[@class='section-title']//h1[text()='FILE UPLOAD']")WebElement Link2; //link for pdf upload
 	
+	@FindBy(xpath="//div[contains(@class,'section-title')]//h1[text()='IFRAME']")WebElement FrameLink; // locator for fra
+	
+	@FindBy(xpath="//ul[@class='nav navbar-nav']//a[@href='products.html']")WebElement OurProducts;
+	
+	@FindBy(xpath="//a[contains(text(), 'New Approach')]")WebElement NewApproachToLearning ;
+	
+	
 	
 	//-------------------below by locator methods--------------------------------------
 	
@@ -58,6 +65,10 @@ public class WebElements_page {
    //private By fileInput = By.xpath("//input[@type='file']"); // locator for file uplaod 
     
     private By submitBtn = By.xpath("//input[@id='submit-button']");
+    
+    
+    
+    
 	
 	
 	
@@ -199,9 +210,9 @@ public class WebElements_page {
     	for (String winHandle : driver.getWindowHandles()) {   // loop for handling all child windows handle.
     			    
     		
-    	driver.switchTo().window(winHandle);               //  switch to child window.
+    	driver.switchTo().window(winHandle);               	  //  switch to child window.
     			    
-    	//driver.switchTo().window(parentWindow); // code for coming back to parent window.
+    	//driver.switchTo().window(parentWindow); 			  // code for coming back to parent window.
     
     	}	
 				
@@ -220,18 +231,54 @@ public class WebElements_page {
 	
 	
 	
-	//---------------------------------------------------------------------------------------------
+	//-----------------------------------code for frame ----------------------------------------------------------
 	
-	/*public void switchToIframe() { // code for switch to frame
-
-		driver.switchTo().frame(driver.findElement(iframe));
+       public void islink3clicked() {
 		
-	}*/
+    	   FrameLink.click();   // for clicking frame page
+		
+		//-----below code for switching to new window
+		
+		//String parentWindow = driver.getWindowHandle();     // storing id of parent window in case you want to come back.
+		
+    	for (String winHandle : driver.getWindowHandles()) {   // loop for handling all child windows handle.
+    			    
+    		
+    	driver.switchTo().window(winHandle);               	  //  switch to child window.
+    			    
+    	//driver.switchTo().window(parentWindow); 			  // code for coming back to parent window.
+    
+    	}	
+				
+	}
+
+
+	public void switchToIframe() {            // switching to frame
+		driver.switchTo().frame(0);
+		
+	}
+
+
+	public void OurProductclick() {
+		OurProducts.click();
+		
+	}
+
+
+	public boolean isOurProductGetSelected(String expectedTab) {
+				
+		WebElement section = driver.findElement(By.xpath("//a[contains(text(),'Our Products')]"));
+        return section.isDisplayed();
+		
+		
+	}
+	
+
    
 	//-------------------------------------------------------------------------------------------------	
 	
+	}
 
-}
 
 		
 
