@@ -1,13 +1,10 @@
 package stepdefinitions;
 
 import static org.testng.Assert.assertEquals;
-
 import java.io.IOException;
 import java.util.List;
-
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Assert;
-
 import ch.qos.logback.classic.Logger;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
@@ -39,7 +36,7 @@ public class WebElements_sd {
 			Assert.assertTrue(webElements_page.isdisplayed(), "Testing all item page is showed");
 		}
 		
-		//-----------------------------------checkbox code---------------------------------------------------------------------------------
+		//-----------------------------------checkbox code-------------------------------------------------------------------------------------------------------------------------------
 		
 		@Given("User navigates to the checkbox page")
 	    public void user_navigates_to_checkbox_page() {
@@ -65,7 +62,7 @@ public class WebElements_sd {
 	        }
 	    }
 		
-	  // --------------------------------------radio button code --------------------------------------------------------------------------- 
+	  // --------------------------------------radio button code --------------------------------------------------------------------------------------------------------------------- 
 	    
 	    @Given("The user is on the WebdriverUniversity radio button test page")
 	    public void the_user_is_on_the_webdriver_university_radio_button_test_page() {
@@ -86,7 +83,7 @@ public class WebElements_sd {
 	    }
 		
 
-	    //-------------------------------------dropdown code---------------------------------------------------
+	    //-------------------------------------dropdown code----------------------------------------------------------------------------------------------------------------------------------
 	 
 	    
 	    @Given("User is on the dropdown menu page")
@@ -106,7 +103,7 @@ public class WebElements_sd {
 	         Assert.assertEquals(actual, expected);
 	    }
 	    
-	    //--------------------file upload code  -------------------------------------------------
+	    //--------------------file upload code  ----------------------------------------------------------------------------------------------------------------------------------------------
 	    
 	    
 	    @Given("User is on the file upload page")
@@ -137,7 +134,7 @@ public class WebElements_sd {
 	    	}
 	    	
 	    
- //---------------------------------------file not uplaod file code ---------------------------------
+ //---------------------------------------file not uplaod file code -----------------------------------------------------------------------------------------------------------------------------------------------
 
 	@When("User clicks the submit button without selecting a file")
 	public void user_clicks_the_submit_button_without_selecting_a_file() {
@@ -154,7 +151,7 @@ public class WebElements_sd {
 	    
 	
 	
-	//-----------------below code for handling frame-----------------------------------------------------
+	//-----------------below code for handling frame-------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 	@Given("User navigates to the iframe page")
 	public void user_navigates_to_the_iframe_page() {
