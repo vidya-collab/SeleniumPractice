@@ -1,23 +1,18 @@
 package pagefactory;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-
 import utils.ExcelReader;
 import utils.ConfigReader;
 import utils.DriverManager;
@@ -32,14 +27,12 @@ public class WebElements_page {
 	ExcelReader reader = new ExcelReader();      // add for data driven 
 	//String Excelpath = ConfigReader.excelpath(); // add for data driven 
 	
-
-
-	//----------------below @FindBy method for locators(xpath)------------------------
+//----------------below @FindBy method for locators(xpath)------------------------
 	
 
 	@FindBy(xpath ="//div[@class='section-title']//h1[text()='DROPDOWN, CHECKBOXE(S) & RADIO BUTTON(S)']")WebElement Link1;// link for chkbox.radiobutton,dropdown
   
-    //@FindBy(xpath ="//div[@id='main-header']//h1']")WebElement page1;
+        //@FindBy(xpath ="//div[@id='main-header']//h1']")WebElement page1;
 	
 	@FindBy(xpath ="//div[@class='section-title']//h1[text()='FILE UPLOAD']")WebElement Link2; //link for pdf upload
 	
@@ -51,9 +44,9 @@ public class WebElements_page {
 	
 	
 	
-	//-------------------below by locator methods--------------------------------------
+//-------------------below by locator methods--------------------------------------
 	
-	private By javaDropdown = By.id("dropdowm-menu-1");// Locator for first dropdown
+    private By javaDropdown = By.id("dropdowm-menu-1");// Locator for first dropdown
     
    
    //private By iframe = By.cssSelector("iframe");  //Locators for frame and file upload
@@ -66,14 +59,8 @@ public class WebElements_page {
     
     private By submitBtn = By.xpath("//input[@id='submit-button']");
     
-    
-    
-    
-	
-	
-	
-    
-    //-------------------------------------below code for constructor for initializing driver------------
+
+//-------------------------------------below code for constructor for initializing driver------------
 	
 	public WebElements_page ()   {  
 		
@@ -81,8 +68,7 @@ public class WebElements_page {
 
 	}
 	
-	
-	//----------------------------------below all methods code start here--------------------------------------------------------
+//----------------------------------below all methods code start here--------------------------------------------------------
 	
 	
 	public void islink1clicked()
@@ -101,7 +87,6 @@ public class WebElements_page {
 		    //driver.switchTo().window(parentWindow); // code for coming back to parent window.
 															}
 
-		
 	}
 	
 	
@@ -114,7 +99,7 @@ public class WebElements_page {
 		}
 	
 	
-	// -------below code from checkbox selection-----have dynamic xpath----------------------------------------------------------------
+// -------below code from checkbox selection-----have dynamic xpath----------------------------------------------------------------
 	
 	public void selectCheckbox(String optionLabel) {
         WebElement checkbox = driver.findElement(By.xpath("//label[contains(.,'" + optionLabel + "')]/input[@type='checkbox']"));
@@ -128,7 +113,7 @@ public class WebElements_page {
         return checkbox.isSelected();
     }
     
-    //----------------------------------below code for radio button selection------------------------------------------------------------------
+//----------------------------------below code for radio button selection------------------------------------------------------------------
    
 
     public void selectRadioButton(String color) {
@@ -180,8 +165,8 @@ public class WebElements_page {
     public void uploadFile(String fileName) {
     	
     
-        //String filePath = System.getProperty("user.dir") + File.separator + "test-data" + File.separator + fileName;
-    	//String filepath ="./src/test/resources/test-data/sample.png";
+ //String filePath = System.getProperty("user.dir") + File.separator + "test-data" + File.separator + fileName;
+//String filepath ="./src/test/resources/test-data/sample.png";
     	
     	String relativePath = "./src/test/resources/test-data/sample.png";
     	String absolutePath = new File(relativePath).getAbsolutePath();
@@ -205,20 +190,19 @@ public class WebElements_page {
 		
 		//-----below code for switching to new window
 		
-		//String parentWindow = driver.getWindowHandle();     // storing id of parent window in case you want to come back.
+		//String parentWindow = driver.getWindowHandle();    	// storing id of parent window in case you want to come back.
 		
-    	for (String winHandle : driver.getWindowHandles()) {   // loop for handling all child windows handle.
+    	for (String winHandle : driver.getWindowHandles()) {   		// loop for handling all child windows handle.
     			    
     		
-    	driver.switchTo().window(winHandle);               	  //  switch to child window.
-    			    
-    	//driver.switchTo().window(parentWindow); 			  // code for coming back to parent window.
+    	driver.switchTo().window(winHandle);               	  	//  switch to child window.
+    			    		
+    	//driver.switchTo().window(parentWindow); 			 // code for coming back to parent window.
     
     	}	
 				
 	}
-	
-	
+		
 	public String Alertforsubmit() {
         
         // Switch to alert and capture text
@@ -227,9 +211,6 @@ public class WebElements_page {
         alert.accept(); // Close the alert
         return alertText;
 	}
-
-	
-	
 	
 	//-----------------------------------code for frame ----------------------------------------------------------
 	
@@ -237,33 +218,30 @@ public class WebElements_page {
 		
     	   FrameLink.click();   // for clicking frame page
 		
-		//-----below code for switching to new window
+	//-----below code for switching to new window
 		
-		//String parentWindow = driver.getWindowHandle();     // storing id of parent window in case you want to come back.
+	//String parentWindow = driver.getWindowHandle();     		// storing id of parent window in case you want to come back.
 		
-    	for (String winHandle : driver.getWindowHandles()) {   // loop for handling all child windows handle.
+    	for (String winHandle : driver.getWindowHandles()) {   		// loop for handling all child windows handle.
     			    
     		
-    	driver.switchTo().window(winHandle);               	  //  switch to child window.
+    	driver.switchTo().window(winHandle);               	  	//  switch to child window.
     			    
-    	//driver.switchTo().window(parentWindow); 			  // code for coming back to parent window.
+    	//driver.switchTo().window(parentWindow); 			 // code for coming back to parent window.
     
     	}	
 				
 	}
-
 
 	public void switchToIframe() {            // switching to frame
 		driver.switchTo().frame(0);
 		
 	}
 
-
 	public void OurProductclick() {
 		OurProducts.click();
 		
 	}
-
 
 	public boolean isOurProductGetSelected(String expectedTab) {
 				
@@ -274,8 +252,7 @@ public class WebElements_page {
 	}
 	
 
-   
-	//-------------------------------------------------------------------------------------------------	
+   //-------------------------------------------------------------------------------------------------	
 	
 	}
 
