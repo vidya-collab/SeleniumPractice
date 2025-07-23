@@ -17,9 +17,9 @@ import io.cucumber.testng.CucumberOptions;
 				
 
 				monochrome=false, 
-				//tags ="@framehandling", 
+				tags ="@Datepicker", 
 				
-				features = {"src/test/resources/features/"},
+				features = {"src/test/resources/features/WebElements.feature"},
 				glue= {"stepdefinitions","hooks"})
 		
 
