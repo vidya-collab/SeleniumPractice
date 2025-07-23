@@ -1,17 +1,13 @@
 package stepdefinitions;
 
-import static org.testng.Assert.assertEquals;
-import java.io.IOException;
 import java.util.List;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Assert;
-import ch.qos.logback.classic.Logger;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pagefactory.WebElements_page;
-import utils.LoggerLoad;
+import utils.LoggerLoad;	
 
 
 public class WebElements_sd {
@@ -177,12 +173,35 @@ public class WebElements_sd {
         Assert.assertTrue(webElements_page.isOurProductGetSelected(expectedTab));
     }
 	    
-}	    
 	    
 	    
-	    
-	    
-	    
+	//---------------------------------------below code is for date picking-------------------------------------------------------
+
+		@Given("User is on the Datepicker page")
+		public void user_is_on_the_datepicker_page() {
+			
+			webElements_page.islink4clicked();
+			LoggerLoad.info("The users is on the Datepicker page frame ");
+		    
+		}
+		
+		@When("User selects date {string}")
+		public void user_selects_date(String date) {
+		    
+			webElements_page.isselectDate(date);
+		    
+		}
+		
+		@Then("Selected date should be {string}")
+		public void selected_date_should_be(String expectedDate) {
+		 
+			String actualDate = webElements_page.getSelectedDate();
+	        Assert.assertEquals(actualDate,expectedDate);
+			
+		}
+			    
+}   
+			    
 	    
 	    
 	    
