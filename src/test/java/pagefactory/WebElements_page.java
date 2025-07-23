@@ -31,23 +31,23 @@ public class WebElements_page {
 //----------------below @FindBy method for locators(xpath)---------------------------------------------------------------------
 	
 
-	@FindBy(xpath ="//div[@class='section-title']//h1[text()='DROPDOWN, CHECKBOXE(S) & RADIO BUTTON(S)']")WebElement Link1; // link for chkbox.radiobutton,dropdown
+	@FindBy(xpath ="//div[@class='section-title']//h1[text()='DROPDOWN, CHECKBOXE(S) & RADIO BUTTON(S)']")WebElement Link1; 	// link for chkbox.radiobutton,dropdown
   
-  //@FindBy(xpath ="//div[@id='main-header']//h1']")WebElement page1;
+  	//@FindBy(xpath ="//div[@id='main-header']//h1']")WebElement page1;
 	
-	@FindBy(xpath ="//div[@class='section-title']//h1[text()='FILE UPLOAD']")WebElement Link2; 			//link for pdf upload
+	@FindBy(xpath ="//div[@class='section-title']//h1[text()='FILE UPLOAD']")WebElement Link2; 			                //link for pdf upload
 	
-	@FindBy(xpath="//div[contains(@class,'section-title')]//h1[text()='IFRAME']")WebElement FrameLink; 	// locator for frame 
+	@FindBy(xpath="//div[contains(@class,'section-title')]//h1[text()='IFRAME']")WebElement FrameLink; 				// locator for frame 
 	
-	@FindBy(xpath="//ul[@class='nav navbar-nav']//a[@href='products.html']")WebElement OurProducts; 	//locator for OurProduct
+	@FindBy(xpath="//ul[@class='nav navbar-nav']//a[@href='products.html']")WebElement OurProducts; 				//locator for OurProduct
 	
-	@FindBy(xpath="//a[contains(text(), 'New Approach')]")WebElement NewApproachToLearning ;			//locator for NewApproch
+	@FindBy(xpath="//a[contains(text(), 'New Approach')]")WebElement NewApproachToLearning ;					//locator for NewApproch
 	
-	@FindBy(xpath="//h1[text()='DATEPICKER']")WebElement DateLink;  									// locator for date
+	@FindBy(xpath="//h1[text()='DATEPICKER']")WebElement DateLink;  								// locator for date
 	
-	@FindBy(xpath="//div[@id='datepicker']")WebElement DatePicker;										//locator for Datepicker ,we can not edit /clear it ,we need input inside it.
+	@FindBy(xpath="//div[@id='datepicker']")WebElement DatePicker;									//locator for Datepicker ,we can not edit /clear it ,we need input inside it.
 	
-	@FindBy(css = "#datepicker input") WebElement DateInput;											//locator for Dateinput
+	@FindBy(css = "#datepicker input") WebElement DateInput;									//locator for Dateinput
 	
 	//@FindBy(xpath ="//div[@id='datepicker']/input") WebElement dateInput;								//locator for Dateinput using xpath
 	
@@ -56,17 +56,17 @@ public class WebElements_page {
 	
 //-------------------below by locator methods----------------------------------------------------------------------------------
 	
-    private By javaDropdown = By.id("dropdowm-menu-1");                           		// Locator for first dropdown
+    private By javaDropdown = By.id("dropdowm-menu-1");                           							// Locator for first dropdown
     
    
-   //private By iframe = By.cssSelector("iframe");                                		//Locators for frame and file upload
-   //private By iframe = By.cssSelector("iframe[src='file-upload/index.html']");  		//Locators for frame and file upload
+   //private By iframe = By.cssSelector("iframe");                                							//Locators for frame and file upload
+   //private By iframe = By.cssSelector("iframe[src='file-upload/index.html']");  							//Locators for frame and file upload
    //private By fileInput = By.xpath("//input[@id='myFile']");
    
-     private By fileInput = By.id("myFile"); 											// locator for file uplaod 
-   //private By fileInput = By.xpath("//input[@type='file']"); 							// locator for file uplaod 
+     private By fileInput = By.id("myFile"); 												// locator for file uplaod 
+   //private By fileInput = By.xpath("//input[@type='file']"); 										// locator for file uplaod 
     
-     private By submitBtn = By.xpath("//input[@id='submit-button']");					//locator for submit button
+     private By submitBtn = By.xpath("//input[@id='submit-button']");									//locator for submit button
     
 
 //-------------------------------------below code for constructor for initializing driver----------------------------------------
@@ -82,10 +82,9 @@ public class WebElements_page {
 	
 	public void islink1clicked()
 	{
-		Link1.click(); 												// going for checkbox,dropdown,radio button page
-		
-		
-																	//-----below code for switching to new window
+		Link1.click(); 							// going for checkbox,dropdown,radio button page
+				
+										//-----below code for switching to new window
 		
 		//String parentWindow = driver.getWindowHandle();     		// storing id of parent window in case you want to come back.
 		
@@ -98,8 +97,7 @@ public class WebElements_page {
 		}
 	}
 	
-	
-	public boolean isdisplayed() 
+		public boolean isdisplayed() 
 		{
 		
 		    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -200,12 +198,12 @@ public class WebElements_page {
 		
 		//String parentWindow = driver.getWindowHandle();    		// storing id of parent window in case you want to come back.
 		
-    	for (String winHandle : driver.getWindowHandles()) {   		// loop for handling all child windows handle.
+    	for (String winHandle : driver.getWindowHandles()) {   			// loop for handling all child windows handle.
     			    
     		
     	driver.switchTo().window(winHandle);               	  		// switch to child window.
     			    		
-    	//driver.switchTo().window(parentWindow); 			 		// code for coming back to parent window.
+    	//driver.switchTo().window(parentWindow); 			 	// code for coming back to parent window.
     
     	}	
 				
@@ -230,7 +228,7 @@ public class WebElements_page {
 		
 	//String parentWindow = driver.getWindowHandle();     			// storing id of parent window in case you want to come back.
 		
-    	for (String winHandle : driver.getWindowHandles()) {   		// loop for handling all child windows handle.
+    	for (String winHandle : driver.getWindowHandles()) {   			// loop for handling all child windows handle.
     			    
     		driver.switchTo().window(winHandle);               		//  switch to child window.
     			    
@@ -240,7 +238,7 @@ public class WebElements_page {
 				
 	}
 
-	public void switchToIframe() {            						// switching to frame
+	public void switchToIframe() {            				// switching to frame
 		driver.switchTo().frame(0);
 		
 	}
@@ -262,17 +260,17 @@ public class WebElements_page {
 	
 	public void islink4clicked() {
 		
-	    DateLink.click();  											 // for clicking datepicker page
+	    DateLink.click();  							// for clicking datepicker page
 			
 		//-----below code for switching to new window
 			
 		//String parentWindow = driver.getWindowHandle();     		// storing id of parent window in case you want to come back.
 			
-	    	for (String winHandle : driver.getWindowHandles()) {   	// loop for handling all child windows handle.
+	    	for (String winHandle : driver.getWindowHandles()) {   	         // loop for handling all child windows handle.
 	    			    
 	    		driver.switchTo().window(winHandle);               	//  switch to child window.
 	    			    
-	    //driver.switchTo().window(parentWindow); 				    // code for coming back to parent window.
+	    //driver.switchTo().window(parentWindow); 				  // code for coming back to parent window.
 	    
 	    	}	
 					
@@ -284,20 +282,19 @@ public class WebElements_page {
 //		DateInput.clear();
 //		DateInput.sendKeys(date);
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;             							//If the input is read-only or hidden, you can bypass it with JS:
+		JavascriptExecutor js = (JavascriptExecutor) driver;             			//If the input is read-only or hidden, you can bypass it with JS:
 		js.executeScript("document.querySelector('#datepicker input').value='07-01-2025'");
 		
-																									// Or with a WebElement
+													// Or with a WebElement
 		WebElement dateInput = driver.findElement(By.id("datepicker"));
 		js.executeScript("arguments[0].value='07-01-2025';", dateInput);
 
 		
 		    try {
-		        Thread.sleep(500); 																	// Add slight delay to allow value to register
+		        Thread.sleep(500); 								// Add slight delay to allow value to register
 		    } catch (InterruptedException e) {
 		        e.printStackTrace();
 		    }
-
 
 	}
 
