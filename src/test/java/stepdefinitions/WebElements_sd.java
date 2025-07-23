@@ -35,7 +35,7 @@ public class WebElements_sd {
 		//-----------------------------------checkbox code-------------------------------------------------------------------------------------------------------------------------------
 		
 		@Given("User navigates to the checkbox page")
-	    public void user_navigates_to_checkbox_page() {
+	   	 public void user_navigates_to_checkbox_page() {
 			
 			webElements_page.islink1clicked();
 			LoggerLoad.info("The users is on the Webdriver University checkbox Page");
@@ -63,7 +63,7 @@ public class WebElements_sd {
 	    @Given("The user is on the WebdriverUniversity radio button test page")
 	    public void the_user_is_on_the_webdriver_university_radio_button_test_page() {
 	    	webElements_page.islink1clicked();
-			LoggerLoad.info("The users is on the Webdriver University radio button Page");
+		LoggerLoad.info("The users is on the Webdriver University radio button Page");
 	        
 	    }
 
@@ -95,8 +95,8 @@ public class WebElements_sd {
 
 	    @Then("{string} should be selected in the dropdown")
 	    public void should_be_selected_in_the_dropdown(String expected) {
-	    	 String actual = webElements_page.getSelectedLanguage();
-	         Assert.assertEquals(actual, expected);
+	    	String actual = webElements_page.getSelectedLanguage();
+		Assert.assertEquals(actual, expected);
 	    }
 	    
 	    //--------------------file upload code  ----------------------------------------------------------------------------------------------------------------------------------------------
@@ -105,8 +105,8 @@ public class WebElements_sd {
 	    @Given("User is on the file upload page")
 	    public void user_is_on_the_file_upload_page() {
 	    	webElements_page.islink2clicked();
-			LoggerLoad.info("The users is on the Webdriver University pdf uplaod Page");
-			//WebElements_page.switchToIframe();
+	    	LoggerLoad.info("The users is on the Webdriver University pdf uplaod Page");
+	    	//WebElements_page.switchToIframe();
 			
 
 	    }
@@ -127,7 +127,7 @@ public class WebElements_sd {
 	    	
 	    	String Submitalert=webElements_page.Alertforsubmit();
 	    	Assert.assertEquals(Submitalert, expectedAlert);
-	    	}
+	    }
 	    	
 	    
  //---------------------------------------file not uplaod file code -----------------------------------------------------------------------------------------------------------------------------------------------
@@ -142,7 +142,7 @@ public class WebElements_sd {
 	@Then("An non submission alert message {string} should be displayed")
 	public void an_non_submission_alert_message_should_be_displayed(String nonSubmitExpectedAlert) {
 		String nonSubmitalert=webElements_page.Alertforsubmit();
-    	Assert.assertEquals(nonSubmitalert, nonSubmitExpectedAlert);
+    		Assert.assertEquals(nonSubmitalert, nonSubmitExpectedAlert);
 	}
 	    
 	
@@ -169,36 +169,35 @@ public class WebElements_sd {
 
 	
 	@Then("{string} section should be displayed")
-    public void section_should_be_displayed(String expectedTab) {
-        Assert.assertTrue(webElements_page.isOurProductGetSelected(expectedTab));
+    	public void section_should_be_displayed(String expectedTab) {
+        	Assert.assertTrue(webElements_page.isOurProductGetSelected(expectedTab));
     }
 	    
 	    
 	    
-	//---------------------------------------below code is for date picking-------------------------------------------------------
+	//---------------------------------------below code is for date picking-----------------------------------------------------------------------------------------------------------------------------------
 
-		@Given("User is on the Datepicker page")
-		public void user_is_on_the_datepicker_page() {
+	@Given("User is on the Datepicker page")
+	public void user_is_on_the_datepicker_page() {
 			
-			webElements_page.islink4clicked();
-			LoggerLoad.info("The users is on the Datepicker page frame ");
+		webElements_page.islink4clicked();
+		LoggerLoad.info("The users is on the Datepicker page frame ");
 		    
-		}
+	}
 		
-		@When("User selects date {string}")
+	@When("User selects date {string}")
 		public void user_selects_date(String date) {
+		webElements_page.isselectDate(date);
 		    
-			webElements_page.isselectDate(date);
-		    
-		}
+	}
 		
-		@Then("Selected date should be {string}")
-		public void selected_date_should_be(String expectedDate) {
+	@Then("Selected date should be {string}")
+	public void selected_date_should_be(String expectedDate) {
 		 
-			String actualDate = webElements_page.getSelectedDate();
-	        Assert.assertEquals(actualDate,expectedDate);
+		String actualDate = webElements_page.getSelectedDate();
+		Assert.assertEquals(actualDate,expectedDate);
 			
-		}
+	}
 			    
 }   
 			    
