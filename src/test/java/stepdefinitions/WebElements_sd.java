@@ -199,9 +199,73 @@ public class WebElements_sd {
 			
 	}
 			    
-}   
+  
 			    
+	    //-------------------------------------below code is for Action class--------------------------------------------------------------------------------	
+		
+		@Given("User is on the Actions page")
+		public void user_is_on_the_actions_page() {
+		   webElements_page.islink5clicked();
+		}
+		
+		@When("User drags the draggable element to the target")
+		public void user_drags_the_draggable_element_to_the_target() {
+			webElements_page.performDragAndDrop();
+		}
+		
+		@Then("Element should be dropped successfully")
+		public void element_should_be_dropped_successfully() {
+			
+			String text = webElements_page.droppable.getText();
+	        Assert.assertTrue(text.contains("Dropped!"));
+		}
+		
+		
+	    @When("User double clicks on the yellow box")
+	    public void double_click() {
+	    	
+	    	webElements_page.performDoubleClick();
+	    }
+
+	    @Then("Color should change to green")
+	    public void color_should_change() {
+	    	
+	        String color = webElements_page.getDoubleClickBoxColor();
+	        
+	        System.out.println(color);
+	        
+	        Assert.assertTrue(color.contains("rgba(147, 203, 90")); // light green
+	    }
+		
+	    @When("User hovers over the first, second and third elements")
+	    public void user_hovers() 
+	    {
+	    	webElements_page.hoverOverElements();
+	    }
+
+	    @Then("User should see all hover responses")
+	    public void verify_hover_responses() 
+	    {
+	    	Assert.assertTrue(webElements_page.isLink1VisibleforHoverOver(), "Link 1 is not visible after hover");
+	    }
+
 	    
-	    
-	    
+	    @When("User clicks and holds on the black box")
+	    public void user_clicks_and_holds() 
+	    {
+	    	webElements_page.clickAndHoldBox();
+	    }
+
+	    @Then("The text should change to indicate click and hold")
+	    public void text_should_change_click_hold()
+	    {
+	    	
+	        String text = webElements_page.getClickBoxText();
+	        Assert.assertTrue(text.contains("Well done! keep holding that click now....."));
+	    }
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+}
+
+
 	    
