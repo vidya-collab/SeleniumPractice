@@ -10,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,9 +25,24 @@ public class WebElements_page {
 	
 	
 	WebDriver driver= DriverManager.getdriver();
+	
 	ConfigReader configFileReader=DriverManager.configReader();
+	
 	ExcelReader reader = new ExcelReader();        // add for data driven 
-	//String Excelpath = ConfigReader.excelpath(); // add for data driven 
+	
+	//String Excelpath = ConfigReader.excelpath(); // add for data driven
+	
+	Actions actions;  // for mouse actions
+	
+	//-------------------------------------below code for constructor for initializing driver----------------------------------------
+	
+		public WebElements_page ()   {  
+			
+			PageFactory.initElements(driver , this);
+			 actions = new Actions(driver);
+
+		}
+	
 	
 //----------------below @FindBy method for locators(xpath)---------------------------------------------------------------------
 	
@@ -35,7 +51,7 @@ public class WebElements_page {
   
   	//@FindBy(xpath ="//div[@id='main-header']//h1']")WebElement page1;
 	
-	@FindBy(xpath ="//div[@class='section-title']//h1[text()='FILE UPLOAD']")WebElement Link2; 			                //link for pdf upload
+	@FindBy(xpath ="//div[@class='section-title']//h1[text()='FILE UPLOAD']")WebElement PdfLink; 			            //link for pdf upload
 	
 	@FindBy(xpath="//div[contains(@class,'section-title')]//h1[text()='IFRAME']")WebElement FrameLink; 				// locator for frame 
 	
@@ -43,15 +59,33 @@ public class WebElements_page {
 	
 	@FindBy(xpath="//a[contains(text(), 'New Approach')]")WebElement NewApproachToLearning ;					//locator for NewApproch
 	
-	@FindBy(xpath="//h1[text()='DATEPICKER']")WebElement DateLink;  								// locator for date
+	@FindBy(xpath="//h1[text()='DATEPICKER']")WebElement DateLink;  											// locator for date
 	
-	@FindBy(xpath="//div[@id='datepicker']")WebElement DatePicker;									//locator for Datepicker ,we can not edit /clear it ,we need input inside it.
+	@FindBy(xpath="//div[@id='datepicker']")WebElement DatePicker;								//locator for Datepicker ,we can not edit /clear it ,we need input inside it.
 	
 	@FindBy(css = "#datepicker input") WebElement DateInput;									//locator for Dateinput
 	
-	//@FindBy(xpath ="//div[@id='datepicker']/input") WebElement dateInput;								//locator for Dateinput using xpath
+	//@FindBy(xpath ="//div[@id='datepicker']/input") WebElement dateInput;						//locator for Dateinput using xpath
 	
-	
+	@FindBy(id = "draggable")WebElement draggable;                                              // all action page locators
+
+    @FindBy(id = "droppable") public WebElement droppable;
+
+    @FindBy(id = "double-click")WebElement doubleClickBox;
+
+    @FindBy(xpath = "//div[@class='dropdown hover']/button[text()='Hover Over Me First!']") public WebElement hoverFirst;
+
+    @FindBy(xpath = "//div[@class='dropdown']/button[text()='Hover Over Me Second!']")public WebElement hoverSecond;
+
+    @FindBy(xpath = "//div[@class='dropdown']/button[text()='Hover Over Me Third!']") public WebElement hoverThird;
+
+    @FindBy(id = "click-box")WebElement clickBox;
+    
+    @FindBy(xpath="//div[@class='section-title']/h1[text()='ACTIONS']") WebElement ActionLink;
+    
+    @FindBy(xpath = "//div[@id='div-hover']//a[text()='Link 1']") public WebElement link1forMouseHover;
+    	
+    //@FindBy(xpath = "//a[text()='Link 1']/../../..]") public WebElement link1forMouseHover; wrong xpath
 	
 	
 //-------------------below by locator methods----------------------------------------------------------------------------------
@@ -69,13 +103,7 @@ public class WebElements_page {
      private By submitBtn = By.xpath("//input[@id='submit-button']");									//locator for submit button
     
 
-//-------------------------------------below code for constructor for initializing driver----------------------------------------
-	
-	public WebElements_page ()   {  
-		
-		PageFactory.initElements(driver , this);
 
-	}
 	
 //----------------------------------below all methods code start here------------------------------------------------------------
 	
@@ -192,7 +220,7 @@ public class WebElements_page {
 
 	public void islink2clicked() {
 		
-		Link2.click();   // for clicking upload file page
+		PdfLink.click();   // for clicking upload file page
 		
 		//-----below code for switching to new window
 		
@@ -282,12 +310,15 @@ public class WebElements_page {
 //		DateInput.clear();
 //		DateInput.sendKeys(date);
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;             			//If the input is read-only or hidden, you can bypass it with JS:
+		JavascriptExecutor js = (JavascriptExecutor) driver;             					//If the input is read-only or hidden, you can bypass it with JS:
 		js.executeScript("document.querySelector('#datepicker input').value='07-01-2025'");
 		
-													// Or with a WebElement
-		WebElement dateInput = driver.findElement(By.id("datepicker"));
-		js.executeScript("arguments[0].value='07-01-2025';", dateInput);
+																							// Or with a WebElement
+//		WebElement dateInput = driver.findElement(By.id("datepicker"));
+//		js.executeScript("arguments[0].value='07-01-2025';", dateInput);
+		
+		js.executeScript("arguments[0].value='07-01-2025'; arguments[0].dispatchEvent(new Event('change'));", DateInput); // some apps require an onchange event to trigger. You can trigger it manually
+
 
 		
 		    try {
@@ -303,11 +334,83 @@ public class WebElements_page {
 	}
 
 		
+	
+
+//-------------------------------------------code for Action class----------------------------------------------------------------------------------------------------------------------------------
+
+	public void islink5clicked() 
+	{
+	
+		ActionLink.click();  									// for clicking datepicker page
+		
+	//-----below code for switching to new window
+		
+	//String parentWindow = driver.getWindowHandle();     		// storing id of parent window in case you want to come back.
+		
+    	for (String winHandle : driver.getWindowHandles()) 
+    	{   	         // loop for handling all child windows handle.
+    			    
+    		driver.switchTo().window(winHandle);               	//  switch to child window.
+    			    
+    //driver.switchTo().window(parentWindow); 				  // code for coming back to parent window.
+    
+    	}	
+				
 	}
 
-//-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	public void performDragAndDrop() 
+	{
+		actions.dragAndDrop(draggable, droppable).perform();
+		
+//		actions.clickAndHold(draggable)  // if above method is flaky then use this.
+//	       .moveToElement(droppable)
+//	       .release()
+//	       .build()
+//	       .perform();
 
+	
+	}
 
+	public void performDoubleClick() 
+	{
+			
+		actions.doubleClick(doubleClickBox).perform();
+		
+	}
+
+	public String getDoubleClickBoxColor() 
+	{
+	
+		return doubleClickBox.getCssValue("background-color");
+				
+	}
+
+	public void hoverOverElements() 
+	{
+        actions.moveToElement(hoverFirst).perform();
+        actions.moveToElement(hoverSecond).perform();
+        actions.moveToElement(hoverThird).perform();
+    }
+
+    public void clickAndHoldBox() 
+    {
+        actions.clickAndHold(clickBox).perform();
+    }
+
+    public String getClickBoxText() 
+    {
+        return clickBox.getText();
+    }
+
+	public boolean isLink1VisibleforHoverOver() 
+	{
+		return link1forMouseHover.isDisplayed();
+		
+	}
+
+   
+
+}
 	
 	
 	
