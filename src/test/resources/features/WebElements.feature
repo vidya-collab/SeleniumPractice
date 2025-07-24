@@ -1,5 +1,4 @@
 @Testingwebdriveruniversity.com
-
 Feature: Testing web Elements from above website like Checkbox,Dropdown,RadioButton,file upload,Alert,Frame,DatePicker,Action class
 
   @LinkclickTest
@@ -59,8 +58,7 @@ Feature: Testing web Elements from above website like Checkbox,Dropdown,RadioBut
     Given User is on the Datepicker page
     When User selects date "07-01-2025"
     Then Selected date should be "07-01-2025"
-    
-    
+
   @DragAndDrop
   Scenario: Drag and drop the element
     Given User is on the Actions page
@@ -69,19 +67,18 @@ Feature: Testing web Elements from above website like Checkbox,Dropdown,RadioBut
 
   @DoubleClick
   Scenario: Double click the yellow box
-  	Given User is on the Actions page
+    Given User is on the Actions page
     When User double clicks on the yellow box
     Then Color should change to green
 
   @MouseHover
   Scenario: Mouse hover over elements
-  	Given User is on the Actions page
+    Given User is on the Actions page
     When User hovers over the first, second and third elements
     Then User should see all hover responses
 
   @ClickAndHold
   Scenario: Click and hold the black box
-  	Given User is on the Actions page
+    Given User is on the Actions page
     When User clicks and holds on the black box
     Then The text should change to indicate click and hold
-    
